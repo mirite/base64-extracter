@@ -16,7 +16,7 @@ if not os.path.exists('output/assets'):
 
 if not os.path.exists('output/tmp'):
     os.makedirs('output/tmp')
-	
+
 print("File is " + str(len(text)) + " characters")
 
 objects=re.findall(r'(data:[a-z]+\/[a-z\+]+;base64,)([a-zA-Z0-9\!\$\&\'\,\*\+\,\;\=\-\.\_\~\:\@\/\?\%]*)[\s\)\"]+', text)
@@ -47,6 +47,8 @@ for f in objects:
 
 		if type=="webp":
 			path="output/tmp/" + str(x) + ".webp"
+			print("Converting webp to png")
+
 			with open(path,"wb") as newFile:
 				encodedString=f[1].encode()
 				newFile.write(base64.decodebytes(encodedString))
@@ -61,5 +63,9 @@ for f in objects:
 
 		text=text.replace(f[0]+f[1],finalPath)
 
+print("Writing HTML")
+
 with open("output/output.html","w") as newFile:
 	newFile.write(text)
+
+print("All done!")
