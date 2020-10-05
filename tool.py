@@ -55,7 +55,7 @@ for f in objects:
 
 			finalPath="assets/image" + str(x) + ".png"
 			dwebp(path,"output/assets/image" + str(x) + ".png","-o")
-
+			print("Converted file, saved to " + "output/assets/image" + str(x) + ".png")
 		else:
 			with open(path,"wb") as newFile:
 				encodedString=f[1].encode()
